@@ -122,7 +122,9 @@ a.contact-detail:hover { text-decoration: underline; }
 .site-footer { padding-block: 2.5rem; border-top: 1px solid var(--border); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .footer-inner p { margin: 0; font-size: .88rem; }
-.back-to-top { color: var(--blue-900); font-size: .88rem; font-weight: 750; text-decoration: none; }
+.back-to-top { position: fixed; z-index: 90; right: clamp(1rem, 3vw, 2rem); bottom: clamp(1rem, 3vw, 2rem); display: grid; width: 52px; height: 52px; place-items: center; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; color: var(--white); background: var(--blue-700); box-shadow: 0 12px 28px rgba(6, 47, 76, .28); font-size: 1.35rem; font-weight: 800; line-height: 1; text-decoration: none; opacity: 0; pointer-events: none; transform: translateY(18px); visibility: hidden; transition: opacity .25s ease, transform .25s ease, visibility .25s, background .2s ease; }
+.back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); visibility: visible; }
+.back-to-top:hover { background: var(--blue-950); transform: translateY(-3px); }
 
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
 .js .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -163,6 +165,7 @@ a.contact-detail:hover { text-decoration: underline; }
   .contact-section { padding-top: 0; }
   .contact-card { width: 100%; border-radius: 0; }
   .footer-inner { flex-direction: column; text-align: center; }
+  .back-to-top { width: 48px; height: 48px; }
 }
 
 @media (max-width: 540px) {

@@ -6,6 +6,7 @@ const navigationLinks = [...document.querySelectorAll('.nav-link')];
 const internalLinks = [...document.querySelectorAll('a[href^="#"]')];
 const sections = [...document.querySelectorAll('main section[id]')];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const backToTop = document.querySelector('[data-back-to-top]');
 
 const closeMenu = () => {
   menuToggle?.setAttribute('aria-expanded', 'false');
@@ -67,5 +68,13 @@ if ('IntersectionObserver' in window) {
 }
 
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
+
+const updateBackToTop = () => {
+  const revealPoint = Math.max(420, window.innerHeight * 0.65);
+  backToTop?.classList.toggle('visible', window.scrollY > revealPoint);
+};
+
+updateBackToTop();
+window.addEventListener('scroll', updateBackToTop, { passive: true });
 window.addEventListener('resize', () => { if (window.innerWidth > 960) closeMenu(); });
 window.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
